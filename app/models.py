@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field, HttpUrl, field_validator, model_validator
+from pydantic import AliasChoices, BaseModel, Field, HttpUrl, field_validator, model_validator
 
 
 _PLACEHOLDER_TOKENS = ("XXXX", "TBD")
@@ -125,7 +125,11 @@ class ExecutiveInsightSpec(BaseModel):
 
 
 class SectionSpec(BaseModel):
-    heading: str = Field(min_length=1, max_length=220)
+    heading: str = Field(
+        min_length=1,
+        max_length=220,
+        validation_alias=AliasChoices("heading", "title"),
+    )
     summary: str = Field(default="", max_length=1500)
     body_markdown: str = Field(default="", max_length=30000)
     key_points: list[str] = Field(default_factory=list, max_length=20)
