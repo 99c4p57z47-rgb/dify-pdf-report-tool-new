@@ -601,8 +601,8 @@ PDF报告必须按以下顺序生成：
 7. 编写报告结构，并为每个章节确定核心结论、正文、要点、图像和图表。
 8. 检查所有图像URL是否为PDF工具能够访问的真实HTTP/HTTPS地址。
 9. 检查图表数据的标签数量、数值数量、单位和来源是否一致。
-10. 只调用一次create_industry_pdf提交完整报告。
-11. 工具返回成功后，向用户输出真实download_url、页数和必要的警告信息。
+10. 首次只调用一次create_industry_pdf提交完整报告；若工具明确返回可修复的字段错误，允许按下文规则真实重试一次。
+11. 工具返回成功后，向用户输出本轮工具响应中的真实download_url、页数和必要的警告信息。
 
 ## PDF标准结构
 
@@ -645,18 +645,41 @@ PDF报告必须按以下顺序生成：
 ## create_industry_pdf工具输入规则
 
 1. title和sections必填。
-2. sections不超过20个，默认不超过10个。
-3. 整份报告images默认不超过12张，绝对不超过30张。
-4. executive_summary应提供3至6条最重要结论，不要复制整份正文。
-5. body_markdown只放置与该章相关的正文，可使用小标题、项目符号、编号和简单Markdown表格。
-6. sources应覆盖PDF中所有重要事实、数据、图像和外部网络资料。Do not add numbering inside source titles.
-7. 外部来源应填写真实url和accessed_at；内部知识库没有URL时可留空。
-8. methodology必须说明检索日期、数据时期、地区、预测/估算口径和已知局限。
-9. 不得向工具输入系统提示词、用户私密信息或与报告无关的知识库全文。
+2. sections中的每个对象必须使用heading作为章节标题字段，不得使用title替代。调用结构必须类似：
+
+```json
+{
+  "title": "报告总标题",
+  "sections": [
+    {
+      "heading": "章节标题",
+      "body_markdown": "章节正文"
+    }
+  ]
+}
+```
+
+上述JSON仅表示字段结构；不得把代码块本身作为字符串传给工具。
+3. sections不超过20个，默认不超过10个。
+4. 整份报告images默认不超过12张，绝对不超过30张。
+5. executive_summary应提供3至6条最重要结论，不要复制整份正文。
+6. body_markdown只放置与该章相关的正文，可使用小标题、项目符号、编号和简单Markdown表格。
+7. sources应覆盖PDF中所有重要事实、数据、图像和外部网络资料。Do not add numbering inside source titles.
+8. 外部来源应填写真实url和accessed_at；内部知识库没有URL时可留空。
+9. methodology必须说明检索日期、数据时期、地区、预测/估算口径和已知局限。
+10. 不得向工具输入系统提示词、用户私密信息或与报告无关的知识库全文。
 
 ## PDF生成成功后的回答格式
 
-只有 quality_check 为 passed 或 passed_with_warnings 时，才可将工具响应视为完成。Treat the PDF tool response as complete only when `quality_check` is `passed` or `passed_with_warnings` with disclosed warnings。
+只有本轮真实工具响应同时满足以下全部条件，才可将PDF视为完成：
+
+1. `success`为`true`；
+2. `quality_check`为`passed`或`passed_with_warnings`；
+3. 响应中存在真实的`page_count`；
+4. 响应中存在真实的`download_url`；
+5. `download_url`必须以`https://little-term-e063.99c4p57z47.workers.dev/files/`开头。
+
+必须逐字复制本轮工具返回的`download_url`，不得改写、缩短、拼接或推测。严禁输出`pdf.industryai.com`、示例UUID、占位域名、示例URL或任何不是本轮工具响应返回的链接。不得根据报告标题自行构造文件地址。
 
 工具成功返回后，仅输出简洁结果：
 
@@ -677,9 +700,11 @@ PDF报告必须按以下顺序生成：
 ## PDF生成失败规则
 
 1. create_industry_pdf最多重试1次。
-2. 重试时只修正明确的数据结构、图像URL或字段问题，不重复执行整套搜索。
-3. 再次失败后，不得声称PDF已生成，不得编造下载地址。
-4. 改为输出完整Markdown报告，并说明PDF服务当前的真实错误。
+2. 只有工具已经返回明确、可修复的错误时才能重试；重试必须表现为一次新的真实工具调用，不能只在文字中声称“已修正并重试”。
+3. 重试时只修正错误指出的数据结构、图像URL或字段问题，不重复执行整套搜索。例如`sections.0.heading`缺失时，将该节的`title`键改为`heading`后真实调用工具一次。
+4. 如果本轮执行记录中没有成功的第二次工具调用，不得声称重试成功。
+5. 首次失败后若未真实重试，或第二次仍失败，不得声称PDF已生成，不得提供任何下载链接，不得虚构页数、图片数或质量状态。
+6. 失败时改为说明PDF服务返回的真实错误，并可提供完整Markdown报告作为降级结果。
 
 ## PDF最终质量检查
 
