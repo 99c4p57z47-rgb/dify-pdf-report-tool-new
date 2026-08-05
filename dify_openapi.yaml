@@ -185,6 +185,8 @@ components:
           type: string
           minLength: 1
           maxLength: 220
+          description: 章节标题。标准字段名为 heading；服务端仅为兼容旧调用而接受 title 别名，Agent 应始终提交 heading。
+          example: 市场现状与核心数据
         summary:
           type: string
           maxLength: 1500
