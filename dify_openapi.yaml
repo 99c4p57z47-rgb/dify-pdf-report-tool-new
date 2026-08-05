@@ -1,0 +1,418 @@
+openapi: 3.1.0
+info:
+  title: Dify Industry PDF Report Tool
+  version: 1.0.0
+  description: 将经过核验的行业研究内容、知识库资产、数据图表和来源信息排版为 PDF，并返回通过质量检查的下载链接。
+servers:
+  - url: https://YOUR-PDF-TOOL-WORKER.workers.dev
+    description: 导入 Dify 前，操作员必须将此占位地址替换为部署的完整 Cloudflare Worker URL。
+paths:
+  /v1/reports:
+    post:
+      operationId: create_industry_pdf
+      summary: 创建家纺行业研究 PDF
+      description: 根据 Agent 已核验并整理的结构化内容生成带图片、图表、引用、页眉页脚和下载链接的 PDF。只有 quality_check 为 passed 或 passed_with_warnings 时，才可视为完成。
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '200':
+          description: PDF 已生成并通过质量检查。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResponse'
+              examples:
+                passed_with_warning:
+                  summary: 生成成功，但有已披露警告
+                  value:
+                    success: true
+                    report_id: 7a0f3ed5c1b24f60
+                    filename: 7a0f3ed5c1b24f60_2026家纺趋势简报.pdf
+                    download_url: https://YOUR-PDF-TOOL-WORKER.workers.dev/files/7a0f3ed5c1b24f60_2026%E5%AE%B6%E7%BA%BA%E8%B6%8B%E5%8A%BF%E7%AE%80%E6%8A%A5.pdf
+                    page_count: 8
+                    image_count: 1
+                    warnings:
+                      - 第三章图片未加入：上游文件暂不可访问
+                    quality_check: passed_with_warnings
+        '401':
+          description: Bearer Token 缺失或无效。
+        '422':
+          description: 输入数据不符合模型验证规则。
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    required: [detail]
+                    properties:
+                      detail:
+                        type: array
+                        items:
+                          type: object
+                          required: [field, message, type]
+                          properties:
+                            field:
+                              type: string
+                            message:
+                              type: string
+                            type:
+                              type: string
+                  - type: object
+                    required: [detail]
+                    properties:
+                      detail:
+                        type: object
+                        required: [field, message]
+                        properties:
+                          field:
+                            type: string
+                          message:
+                            type: string
+              examples:
+                request_validation:
+                  summary: FastAPI 请求模型验证错误（detail 数组）
+                  value:
+                    detail:
+                      - field: sections.0.charts.0.source_ids
+                        message: 包含结构化 datasets 数值的图表必须提供 source_ids
+                        type: value_error
+                service_validation:
+                  summary: 服务端运行时限制错误（detail 对象）
+                  value:
+                    detail:
+                      field: sections
+                      message: Too many sections; maximum is 20
+        '500':
+          description: PDF 生成或质量检查失败。
+        '503':
+          description: 服务暂不可用，例如资产清单或中文字体初始化失败。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+              example:
+                detail: 'Chinese font setup failed: CJK_FONT_DIR is not configured'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API token
+  schemas:
+    ReportRequest:
+      type: object
+      required: [title, sections]
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 240
+          description: PDF 主标题。
+        subtitle:
+          type: string
+          maxLength: 300
+        author:
+          type: string
+          maxLength: 160
+          default: 家纺行业报告分析智能体
+        generated_at:
+          type: string
+          maxLength: 80
+        executive_summary:
+          type: string
+          maxLength: 6000
+        executive_insights:
+          type: array
+          minItems: 1
+          maxItems: 5
+          items:
+            $ref: '#/components/schemas/ExecutiveInsight'
+        sections:
+          type: array
+          minItems: 1
+          maxItems: 30
+          items:
+            $ref: '#/components/schemas/Section'
+        sources:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Source'
+        methodology:
+          type: string
+          maxLength: 5000
+          description: 说明检索日期、地区、数据时期、预测或估算口径及已知局限。
+        disclaimer:
+          type: string
+          maxLength: 3000
+          default: 本报告基于已注明的内部知识库资料和公开来源生成。预测、估算和综合判断不应被视为报告原文或投资建议。
+        filename:
+          type: string
+          maxLength: 160
+          description: 不含目录的文件名；可留空。
+    ExecutiveInsight:
+      type: object
+      required: [claim, evidence, implication]
+      properties:
+        claim:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        evidence:
+          type: string
+          minLength: 1
+          maxLength: 4000
+        implication:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        source_ids:
+          type: array
+          maxItems: 100
+          items:
+            type: string
+    Section:
+      type: object
+      required: [heading]
+      properties:
+        heading:
+          type: string
+          minLength: 1
+          maxLength: 220
+        summary:
+          type: string
+          maxLength: 1500
+        body_markdown:
+          type: string
+          maxLength: 30000
+          description: 正文 Markdown，支持标题、段落、列表和简单表格；长表会自动分页。
+        key_points:
+          type: array
+          maxItems: 20
+          items:
+            type: string
+        images:
+          type: array
+          maxItems: 8
+          description: 只可使用知识库返回的 asset_id 或已核验、可访问的 HTTPS URL。
+          items:
+            $ref: '#/components/schemas/Image'
+        charts:
+          type: array
+          maxItems: 6
+          items:
+            $ref: '#/components/schemas/Chart'
+        source_ids:
+          type: array
+          maxItems: 100
+          items:
+            type: string
+    Image:
+      type: object
+      required: [caption]
+      description: 每张图片必须准确提供 asset_id 或 url 其中之一；asset_id 只能来自知识库返回结果。
+      properties:
+        asset_id:
+          type: [string, 'null']
+          minLength: 1
+          maxLength: 300
+          pattern: '^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$'
+          description: 知识库返回的稳定图片资产 ID；不得填写文件路径或猜测的 URL。
+        url:
+          type: [string, 'null']
+          format: uri
+          maxLength: 3000
+          pattern: '^https://'
+          description: 已核验的外部 HTTPS 图片 URL；不得填写本地或相对路径。
+        caption:
+          type: string
+          minLength: 1
+          maxLength: 600
+        source:
+          type: string
+          maxLength: 400
+        page:
+          type: string
+          maxLength: 40
+        alt:
+          type: string
+          maxLength: 300
+        layout:
+          type: string
+          enum: [full, half]
+          default: full
+        fit:
+          type: string
+          enum: [contain, cover]
+          default: contain
+        report_title:
+          type: [string, 'null']
+          maxLength: 300
+        publisher:
+          type: [string, 'null']
+          maxLength: 200
+        year:
+          type: [integer, 'null']
+          minimum: 1
+          maximum: 9999
+        source_page:
+          type: [integer, 'null']
+          minimum: 1
+        source_name:
+          type: [string, 'null']
+          maxLength: 300
+        source_url:
+          type: [string, 'null']
+          format: uri
+          maxLength: 2000
+          pattern: '^https://'
+      oneOf:
+        - required: [asset_id]
+          properties:
+            asset_id:
+              type: string
+            url:
+              type: 'null'
+        - required: [url]
+          properties:
+            asset_id:
+              type: 'null'
+            url:
+              type: string
+        # Root caption is required but intentionally excluded here: a concrete
+        # asset_id+url request therefore matches no valid locator branch.
+        - required: [asset_id, url]
+          properties:
+            asset_id: {}
+            url: {}
+          additionalProperties: false
+    Chart:
+      type: object
+      required: [type, title, labels, datasets]
+      properties:
+        type:
+          type: string
+          enum: [bar, horizontal_bar, line, pie, doughnut]
+        title:
+          type: string
+          minLength: 1
+          maxLength: 220
+        labels:
+          type: array
+          minItems: 2
+          maxItems: 30
+          items:
+            type: string
+        datasets:
+          type: array
+          minItems: 1
+          maxItems: 6
+          items:
+            $ref: '#/components/schemas/Dataset'
+        unit:
+          type: string
+          maxLength: 60
+          description: 数值单位，例如亿元、%、万件。
+        source:
+          type: string
+          maxLength: 500
+          description: 数据来源，至少说明资料名、机构和年份。
+        note:
+          type: string
+          maxLength: 500
+        source_ids:
+          type: array
+          maxItems: 100
+          description: 每张含 datasets 数值的图表都必须引用 sources 中存在的 source_id。
+          items:
+            type: string
+    Dataset:
+      type: object
+      required: [label, data]
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 150
+        data:
+          type: array
+          minItems: 1
+          maxItems: 30
+          items:
+            type: number
+    Source:
+      type: object
+      required: [source_id, title, organization, published_at]
+      properties:
+        source_id:
+          type: string
+          minLength: 1
+          maxLength: 120
+        title:
+          type: string
+          minLength: 1
+          maxLength: 300
+          description: 不要在来源标题内添加编号。
+        organization:
+          type: string
+          minLength: 1
+          maxLength: 200
+          pattern: '.*\S.*'
+        published_at:
+          type: string
+          minLength: 1
+          maxLength: 80
+          pattern: '.*\S.*'
+        data_period:
+          type: string
+          maxLength: 120
+        url:
+          type: [string, 'null']
+          format: uri
+          maxLength: 2000
+          pattern: '^https://'
+        source_type:
+          type: string
+          maxLength: 80
+        accessed_at:
+          type: string
+          maxLength: 80
+    ReportResponse:
+      type: object
+      required: [success, report_id, filename, download_url, page_count, image_count, warnings, quality_check]
+      properties:
+        success:
+          type: boolean
+          default: true
+        report_id:
+          type: string
+        filename:
+          type: string
+        download_url:
+          type: string
+          description: 用户可访问的 PDF 下载地址。
+        page_count:
+          type: integer
+        image_count:
+          type: integer
+        warnings:
+          type: array
+          items:
+            type: string
+          description: 已降级或未插入内容的披露；调用方必须读取。
+        quality_check:
+          type: string
+          enum: [passed, passed_with_warnings]
+          description: 只有 passed 或 passed_with_warnings 表示生成完成。
+    ApiErrorResponse:
+      type: object
+      required: [detail]
+      properties:
+        detail:
+          type: string

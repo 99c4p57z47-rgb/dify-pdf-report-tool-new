@@ -1,0 +1,17 @@
+services:
+  dify-pdf-report-tool:
+    build: .
+    container_name: dify-pdf-report-tool
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      PDF_TOOL_API_TOKEN: ${PDF_TOOL_API_TOKEN}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL}
+      IMAGE_HOST_ALLOWLIST: ${IMAGE_HOST_ALLOWLIST:-}
+      MAX_IMAGE_BYTES: ${MAX_IMAGE_BYTES:-12582912}
+      MAX_REPORT_SECTIONS: ${MAX_REPORT_SECTIONS:-20}
+      MAX_REPORT_IMAGES: ${MAX_REPORT_IMAGES:-30}
+    volumes:
+      - ./data/output:/app/output
+
