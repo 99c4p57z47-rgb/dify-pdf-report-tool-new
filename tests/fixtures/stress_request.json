@@ -1,0 +1,601 @@
+{
+  "title": "中国家纺多模态证据PDF服务压力验收报告",
+  "subtitle": "十二章节、三十来源、一百行表格、四张图表与真实知识库试点资产的本地视觉门禁",
+  "author": "Dify PDF服务验收组",
+  "generated_at": "2026-08-05 14:30",
+  "executive_summary": "本报告是排版与部署前验收夹具。内容覆盖超长中文标题、English API／KPI／SKU缩写、多页目录、跨页表格、真实知识库图像、四类数据图表、建议路线图和带长HTTPS链接的来源附录。所有精确数值均通过source_ids关联到夹具中的验收来源；这些数值只服务于软件验收，不代表行业研究结论。",
+  "executive_insights": [
+    {
+      "claim": "十二个章节必须在同一份PDF中保持清晰层级。",
+      "evidence": "目录、正文、方法和来源附录分别覆盖多页，用于检查页眉页脚与连续页码。",
+      "implication": "先完成结构门禁，再进行视觉抽查和外部HTTP验收。",
+      "source_ids": [
+        "acceptance_source_01"
+      ]
+    },
+    {
+      "claim": "一百行表格必须完整跨页且重复表头。",
+      "evidence": "夹具显式包含100条验收记录，并由同一章节的来源ID支撑。",
+      "implication": "抽查表格起始页、中间页与结束页，拒绝裁切、重叠或漏行。",
+      "source_ids": [
+        "acceptance_source_06"
+      ]
+    },
+    {
+      "claim": "四张图表和两处真实资产放置应保持可读。",
+      "evidence": "条形图、折线图、环形图、横向条形图及试点图像均进入真实渲染链路。",
+      "implication": "核对中文标签、图注、来源、比例和留白，任何黑块或拉伸都应阻断交付。",
+      "source_ids": [
+        "acceptance_source_02",
+        "acceptance_source_03",
+        "acceptance_source_04",
+        "acceptance_source_05"
+      ]
+    },
+    {
+      "claim": "三十条来源的长HTTPS链接必须在附录中安全换行。",
+      "evidence": "每条来源都包含完整机构、日期、数据时期和可审计链接。",
+      "implication": "在来源附录抽查页内换行与页边界，确保无裁切和重复编号。",
+      "source_ids": [
+        "acceptance_source_30"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "从消费洞察到商品企划的多模态证据编排、来源追溯与执行闭环：第1章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第1组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第1章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第1组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_01。\n\n## 一百行跨页表格验收\n\n| 行号 | 检查批次 | 验收要求 | 责任角色 | 状态 | 来源ID |\n|---|---|---|---|---|---|\n| 001 | 版式检查批次001 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 002 | 版式检查批次002 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 003 | 版式检查批次003 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 004 | 版式检查批次004 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 005 | 版式检查批次005 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 006 | 版式检查批次006 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 007 | 版式检查批次007 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 008 | 版式检查批次008 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 009 | 版式检查批次009 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 010 | 版式检查批次010 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 011 | 版式检查批次011 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 012 | 版式检查批次012 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 013 | 版式检查批次013 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 014 | 版式检查批次014 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 015 | 版式检查批次015 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 016 | 版式检查批次016 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 017 | 版式检查批次017 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 018 | 版式检查批次018 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 019 | 版式检查批次019 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 020 | 版式检查批次020 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 021 | 版式检查批次021 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 022 | 版式检查批次022 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 023 | 版式检查批次023 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 024 | 版式检查批次024 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 025 | 版式检查批次025 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 026 | 版式检查批次026 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 027 | 版式检查批次027 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 028 | 版式检查批次028 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 029 | 版式检查批次029 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 030 | 版式检查批次030 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 031 | 版式检查批次031 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 032 | 版式检查批次032 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 033 | 版式检查批次033 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 034 | 版式检查批次034 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 035 | 版式检查批次035 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 036 | 版式检查批次036 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 037 | 版式检查批次037 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 038 | 版式检查批次038 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 039 | 版式检查批次039 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 040 | 版式检查批次040 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 041 | 版式检查批次041 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 042 | 版式检查批次042 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 043 | 版式检查批次043 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 044 | 版式检查批次044 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 045 | 版式检查批次045 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 046 | 版式检查批次046 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 047 | 版式检查批次047 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 048 | 版式检查批次048 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 049 | 版式检查批次049 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 050 | 版式检查批次050 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 051 | 版式检查批次051 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 052 | 版式检查批次052 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 053 | 版式检查批次053 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 054 | 版式检查批次054 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 055 | 版式检查批次055 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 056 | 版式检查批次056 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 057 | 版式检查批次057 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 058 | 版式检查批次058 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 059 | 版式检查批次059 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 060 | 版式检查批次060 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 061 | 版式检查批次061 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 062 | 版式检查批次062 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 063 | 版式检查批次063 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 064 | 版式检查批次064 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 065 | 版式检查批次065 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 066 | 版式检查批次066 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 067 | 版式检查批次067 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 068 | 版式检查批次068 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 069 | 版式检查批次069 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 070 | 版式检查批次070 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 071 | 版式检查批次071 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 072 | 版式检查批次072 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 073 | 版式检查批次073 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 074 | 版式检查批次074 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 075 | 版式检查批次075 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 076 | 版式检查批次076 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 077 | 版式检查批次077 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 078 | 版式检查批次078 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 079 | 版式检查批次079 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 080 | 版式检查批次080 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 081 | 版式检查批次081 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 082 | 版式检查批次082 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 083 | 版式检查批次083 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 084 | 版式检查批次084 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 085 | 版式检查批次085 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 086 | 版式检查批次086 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 087 | 版式检查批次087 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 088 | 版式检查批次088 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 089 | 版式检查批次089 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 090 | 版式检查批次090 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 091 | 版式检查批次091 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 092 | 版式检查批次092 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 093 | 版式检查批次093 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 094 | 版式检查批次094 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |\n| 095 | 版式检查批次095 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员5 | 已核对 | acceptance_source_06 |\n| 096 | 版式检查批次096 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员6 | 已核对 | acceptance_source_06 |\n| 097 | 版式检查批次097 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员1 | 已核对 | acceptance_source_06 |\n| 098 | 版式检查批次098 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员2 | 已核对 | acceptance_source_06 |\n| 099 | 版式检查批次099 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员3 | 已核对 | acceptance_source_06 |\n| 100 | 版式检查批次100 | 中文正文、English API／KPI 缩写与来源标识均需完整显示 | 验收人员4 | 已核对 | acceptance_source_06 |",
+      "source_ids": [
+        "acceptance_source_01"
+      ],
+      "images": [
+        {
+          "asset_id": "ht_generated_chart_001",
+          "caption": "试点知识库横向证据图在半宽布局中的第一处真实资产放置。",
+          "source": "POP趋势·家居《2026年618床上用品数据分析报告》｜POP HOME / POP Fashion｜2026年",
+          "page": "第1页",
+          "alt": "横向家纺报告证据图第一处半宽放置",
+          "layout": "half",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "heading": "渠道增长与利润质量并行管理下的中文长标题、English KPI缩写与可读性验证：第2章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第2组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第2章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第2组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_02。",
+      "source_ids": [
+        "acceptance_source_02"
+      ],
+      "images": [
+        {
+          "asset_id": "ht_generated_chart_001",
+          "caption": "已核验横向试点资产置于竖版报告页面容器，检查contain行为和留白。",
+          "source": "POP趋势·家居《2026年618床上用品数据分析报告》｜POP HOME / POP Fashion｜2026年",
+          "page": "第1页",
+          "alt": "竖版页面容器中的横向家纺报告证据图",
+          "layout": "full",
+          "fit": "contain"
+        }
+      ],
+      "charts": [
+        {
+          "type": "bar",
+          "title": "四项验收维度完成度",
+          "labels": [
+            "来源追溯",
+            "字体显示",
+            "图片比例",
+            "分页可读"
+          ],
+          "datasets": [
+            {
+              "label": "完成项",
+              "data": [
+                12,
+                12,
+                12,
+                12
+              ]
+            }
+          ],
+          "unit": "项",
+          "source": "多模态PDF本地验收记录｜2026年",
+          "note": "仅用于版式验收，不代表行业统计。",
+          "source_ids": [
+            "acceptance_source_02"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "知识库图像证据在竖版页面容器和横向数据表之间切换时的保持比例与图注完整性：第3章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第3组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第3章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第3组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_03。",
+      "source_ids": [
+        "acceptance_source_03"
+      ],
+      "charts": [
+        {
+          "type": "line",
+          "title": "六阶段质量检查趋势",
+          "labels": [
+            "输入",
+            "验证",
+            "排版",
+            "渲染",
+            "复核",
+            "交付"
+          ],
+          "datasets": [
+            {
+              "label": "通过项",
+              "data": [
+                5,
+                7,
+                9,
+                10,
+                11,
+                12
+              ]
+            }
+          ],
+          "unit": "项",
+          "source": "多模态PDF本地验收记录｜2026年",
+          "note": "阶段值为验收夹具中的结构化测试数值。",
+          "source_ids": [
+            "acceptance_source_03"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "品牌定位、价格带、材料创新、供应链韧性和内容转化的综合决策框架：第4章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第4组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第4章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第4组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_04。",
+      "source_ids": [
+        "acceptance_source_04"
+      ],
+      "charts": [
+        {
+          "type": "doughnut",
+          "title": "质量门禁检查构成",
+          "labels": [
+            "文字",
+            "图像",
+            "图表",
+            "来源"
+          ],
+          "datasets": [
+            {
+              "label": "占比",
+              "data": [
+                35,
+                20,
+                20,
+                25
+              ]
+            }
+          ],
+          "unit": "%",
+          "source": "多模态PDF本地验收记录｜2026年",
+          "note": "合计100%，用于检查环形图标签和中文字体。",
+          "source_ids": [
+            "acceptance_source_04"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "面向Dify Agent、HTTP API与PDF下载链路的结构化输入和质量状态核验：第5章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第5组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第5章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第5组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_05。",
+      "source_ids": [
+        "acceptance_source_05"
+      ],
+      "charts": [
+        {
+          "type": "horizontal_bar",
+          "title": "长标签条件下的横向条形图可读性",
+          "labels": [
+            "中文长标签与English API缩写完整显示",
+            "知识库证据图保持原始宽高比例",
+            "跨页表格重复表头且无内容裁切",
+            "参考资料长HTTPS链接可辨识"
+          ],
+          "datasets": [
+            {
+              "label": "检查分值",
+              "data": [
+                96,
+                94,
+                98,
+                92
+              ]
+            }
+          ],
+          "unit": "分",
+          "source": "多模态PDF本地验收记录｜2026年",
+          "note": "测试分值仅用于触发横向图表版式。",
+          "source_ids": [
+            "acceptance_source_05"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "区域市场、用户分层、触点旅程与复购信号的证据一致性审计：第6章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第6组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第6章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第6组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_06。",
+      "source_ids": [
+        "acceptance_source_06"
+      ]
+    },
+    {
+      "heading": "产品组合取舍、SKU效率、库存周转与渠道协同的行动优先级：第7章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第7组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第7章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第7组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_07。",
+      "source_ids": [
+        "acceptance_source_07"
+      ]
+    },
+    {
+      "heading": "试点设计、阶段目标、风险护栏与停止条件的Recommendation Roadmap：第8章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第8组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第8章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第8组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_08。",
+      "source_ids": [
+        "acceptance_source_08"
+      ]
+    },
+    {
+      "heading": "组织责任、数据口径、审批记录与对外披露边界的治理机制：第9章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第9组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第9章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第9组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_09。",
+      "source_ids": [
+        "acceptance_source_09"
+      ]
+    },
+    {
+      "heading": "持续监测、异常诊断、复盘节奏与WBR／MBR执行仪表盘要求：第10章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第10组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第10章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第10组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_10。",
+      "source_ids": [
+        "acceptance_source_10"
+      ]
+    },
+    {
+      "heading": "技术运行、字体嵌入、Poppler渲染、文件安全和可重复验收：第11章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第11组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第11章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第11组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_11。",
+      "source_ids": [
+        "acceptance_source_11"
+      ]
+    },
+    {
+      "heading": "结论综合、局限披露、下一步工作与来源附录导航：第12章在复杂业务语境中保持标题与首段同行并避免孤立分页，并进一步验证从研究口径、设计约束、技术运行到业务行动之间的完整信息链条是否在复杂分页条件下保持清晰可辨与可审计，同时要求每一个目录条目明确呈现目标市场、资料时期、决策对象、证据边界、责任角色、质量门禁、风险护栏与下一步交付节点，使读者无需回到正文即可理解章节范围",
+      "summary": "本章用于验证第12组内容在真实中文字体、真实图表和真实资产清单下的排版表现；所有精确数值均通过本章 source_ids 关联到已列来源。",
+      "key_points": [],
+      "body_markdown": "## 第12章验收说明\n\n本段通过多句中文正文检查行距、段距与换页。服务只负责将已核验内容排版，不搜索事实，也不为缺失证据补写结论。验收人员应同时阅读页眉、页脚、图注、图表来源和参考资料。\n\n### 决策含义与执行要求\n\n在第12组检查中，团队需要把证据强度、业务影响和执行成本放在同一框架内审视，并把每一项精确数值关联到 acceptance_source_12。",
+      "source_ids": [
+        "acceptance_source_12"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "acceptance_source_01",
+      "title": "多模态PDF验收证据来源 01：消费、渠道、产品与执行口径审计记录",
+      "organization": "POP HOME / POP Fashion",
+      "published_at": "2026",
+      "data_period": "2026年验收周期第1组",
+      "url": "https://research.example.com/verified-evidence/01/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0001&download=false",
+      "source_type": "内部知识库试点资产",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_02",
+      "title": "多模态PDF验收证据来源 02：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第2组",
+      "url": "https://research.example.com/verified-evidence/02/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0002&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_03",
+      "title": "多模态PDF验收证据来源 03：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第3组",
+      "url": "https://research.example.com/verified-evidence/03/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0003&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_04",
+      "title": "多模态PDF验收证据来源 04：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第4组",
+      "url": "https://research.example.com/verified-evidence/04/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0004&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_05",
+      "title": "多模态PDF验收证据来源 05：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第5组",
+      "url": "https://research.example.com/verified-evidence/05/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0005&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_06",
+      "title": "多模态PDF验收证据来源 06：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第6组",
+      "url": "https://research.example.com/verified-evidence/06/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0006&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_07",
+      "title": "多模态PDF验收证据来源 07：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第7组",
+      "url": "https://research.example.com/verified-evidence/07/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0007&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_08",
+      "title": "多模态PDF验收证据来源 08：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第8组",
+      "url": "https://research.example.com/verified-evidence/08/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0008&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_09",
+      "title": "多模态PDF验收证据来源 09：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第9组",
+      "url": "https://research.example.com/verified-evidence/09/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0009&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_10",
+      "title": "多模态PDF验收证据来源 10：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第10组",
+      "url": "https://research.example.com/verified-evidence/10/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0010&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_11",
+      "title": "多模态PDF验收证据来源 11：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第11组",
+      "url": "https://research.example.com/verified-evidence/11/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0011&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_12",
+      "title": "多模态PDF验收证据来源 12：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第12组",
+      "url": "https://research.example.com/verified-evidence/12/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0012&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_13",
+      "title": "多模态PDF验收证据来源 13：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第13组",
+      "url": "https://research.example.com/verified-evidence/13/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0013&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_14",
+      "title": "多模态PDF验收证据来源 14：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第14组",
+      "url": "https://research.example.com/verified-evidence/14/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0014&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_15",
+      "title": "多模态PDF验收证据来源 15：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第15组",
+      "url": "https://research.example.com/verified-evidence/15/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0015&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_16",
+      "title": "多模态PDF验收证据来源 16：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第16组",
+      "url": "https://research.example.com/verified-evidence/16/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0016&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_17",
+      "title": "多模态PDF验收证据来源 17：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第17组",
+      "url": "https://research.example.com/verified-evidence/17/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0017&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_18",
+      "title": "多模态PDF验收证据来源 18：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第18组",
+      "url": "https://research.example.com/verified-evidence/18/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0018&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_19",
+      "title": "多模态PDF验收证据来源 19：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第19组",
+      "url": "https://research.example.com/verified-evidence/19/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0019&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_20",
+      "title": "多模态PDF验收证据来源 20：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第20组",
+      "url": "https://research.example.com/verified-evidence/20/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0020&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_21",
+      "title": "多模态PDF验收证据来源 21：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第21组",
+      "url": "https://research.example.com/verified-evidence/21/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0021&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_22",
+      "title": "多模态PDF验收证据来源 22：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第22组",
+      "url": "https://research.example.com/verified-evidence/22/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0022&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_23",
+      "title": "多模态PDF验收证据来源 23：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第23组",
+      "url": "https://research.example.com/verified-evidence/23/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0023&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_24",
+      "title": "多模态PDF验收证据来源 24：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第24组",
+      "url": "https://research.example.com/verified-evidence/24/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0024&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_25",
+      "title": "多模态PDF验收证据来源 25：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第25组",
+      "url": "https://research.example.com/verified-evidence/25/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0025&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_26",
+      "title": "多模态PDF验收证据来源 26：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第26组",
+      "url": "https://research.example.com/verified-evidence/26/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0026&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_27",
+      "title": "多模态PDF验收证据来源 27：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第27组",
+      "url": "https://research.example.com/verified-evidence/27/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0027&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_28",
+      "title": "多模态PDF验收证据来源 28：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第28组",
+      "url": "https://research.example.com/verified-evidence/28/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0028&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_29",
+      "title": "多模态PDF验收证据来源 29：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第29组",
+      "url": "https://research.example.com/verified-evidence/29/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0029&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    },
+    {
+      "source_id": "acceptance_source_30",
+      "title": "多模态PDF验收证据来源 30：消费、渠道、产品与执行口径审计记录",
+      "organization": "PDF工具本地验收资料库",
+      "published_at": "2026-08-04",
+      "data_period": "2026年验收周期第30组",
+      "url": "https://research.example.com/verified-evidence/30/home-textile/multimodal/pdf-layout/acceptance/source-document?edition=final&language=zh-CN&audit_record=0030&download=false",
+      "source_type": "内部验收记录",
+      "accessed_at": "2026-08-05"
+    }
+  ],
+  "methodology": "本压力夹具只用于本地软件验收。请求先由真实ReportRequest模型校验，再通过真实资产清单解析知识库asset_id，使用真实字体注册与探针、真实Matplotlib图表渲染、真实Platypus版式构建、pypdf结构质量检查和Poppler页面渲染。当前包仅包含一个已核验试点图像资产（1262×789横向JPEG），因此夹具将该真实资产分别进行一次半宽和一次全宽contain放置，以观察竖版页面容器和不同布局占位中的缩放；没有伪造第二张竖向来源图像，竖向原始图像验收仍待增加经过来源核验的资产。",
+  "disclaimer": "本报告中的数值、分值、完成项和阶段值均为软件验收夹具数据，不构成行业事实、商业建议或对任何原始报告的替代。",
+  "filename": "多模态PDF压力验收报告"
+}

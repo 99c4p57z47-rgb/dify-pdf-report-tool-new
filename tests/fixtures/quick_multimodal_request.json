@@ -1,0 +1,84 @@
+{
+  "title": "2026年中国家纺行业多模态报告快速验收",
+  "subtitle": "验证一次请求同时包含原报告图片、内置数据图和原生数据图表",
+  "author": "家纺行业报告分析智能体",
+  "generated_at": "2026-08-06",
+  "executive_summary": "本报告用于验证多模态PDF链路。2024年行业数据作为历史基线，2026/27色彩趋势图作为前瞻设计证据；不将历史数据表述为2026年实际值。",
+  "executive_insights": [
+    {
+      "claim": "历史经营指标与前瞻设计趋势应分开标注。",
+      "evidence": "经营数据统计期为2024年，色彩资料适用期为2026/27秋冬。",
+      "implication": "报告同时保留数据时期和趋势适用期，避免跨期误读。",
+      "source_ids": ["industry_2024", "color_2026_27"]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "行业经营历史基线",
+      "summary": "以下图像与图表均为2024年统计口径，只用于建立历史基线。",
+      "body_markdown": "规模以上家纺企业营业收入同比增长1.44%，利润总额同比下降6.6%。",
+      "key_points": ["营业收入保持小幅增长", "利润端承受压力"],
+      "source_ids": ["industry_2024"],
+      "images": [
+        {
+          "asset_id": "ht_generated_chart_001",
+          "caption": "2024年规模以上家纺企业经营指标同比变化",
+          "alt": "营业收入、营业成本、费用和利润同比变化图",
+          "layout": "full",
+          "fit": "contain"
+        }
+      ],
+      "charts": [
+        {
+          "type": "bar",
+          "title": "2024年家纺子行业营业收入同比变化",
+          "labels": ["床上用品", "毛巾", "布艺"],
+          "datasets": [
+            {"label": "营收同比", "data": [3.3, -4.7, 6.42]}
+          ],
+          "unit": "%",
+          "source": "中国家用纺织品行业协会《2024年1-9月我国家纺行业运行分析》",
+          "note": "2024年1-9月累计同比，不代表2026年实际表现。",
+          "source_ids": ["industry_2024"]
+        }
+      ]
+    },
+    {
+      "heading": "2026/27秋冬色彩与材质方向",
+      "summary": "冰川湖色强调冷静、理性及毛绒材质的柔和质感。",
+      "body_markdown": "该图用于产品企划的色彩与材质方向说明，不用于证明市场规模。",
+      "key_points": ["冷感蓝色", "马海毛与天鹅绒等毛绒材质"],
+      "source_ids": ["color_2026_27"],
+      "images": [
+        {
+          "asset_id": "ht_color_material_001",
+          "caption": "2026/27秋冬关键色冰川湖及材质应用",
+          "alt": "冰川湖色彩板和家居材质应用图",
+          "layout": "full",
+          "fit": "contain"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "industry_2024",
+      "title": "2024年我国家纺行业运行分析",
+      "organization": "中国家用纺织品行业协会",
+      "published_at": "2024",
+      "data_period": "2024年1-11月；子行业数据为2024年1-9月",
+      "source_type": "行业协会报告"
+    },
+    {
+      "source_id": "color_2026_27",
+      "title": "26&27秋冬家居色彩趋势预测",
+      "organization": "原报告发布机构",
+      "published_at": "2026",
+      "data_period": "2026/27秋冬",
+      "source_type": "趋势报告"
+    }
+  ],
+  "methodology": "使用内置资产清单中的稳定asset_id，并将2024年历史经营数据与2026/27趋势预测分开呈现。",
+  "disclaimer": "本文件用于验证PDF多模态生成链路，不构成投资建议。",
+  "filename": "2026家纺多模态快速验收"
+}
