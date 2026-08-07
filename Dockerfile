@@ -24,7 +24,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app ./app
 COPY scripts ./scripts
 COPY assets ./assets
+COPY knowledge ./knowledge
 ENV PDF_ASSET_DIR=/app/assets
+ENV PDF_KNOWLEDGE_DIR=/app/knowledge
 RUN mkdir -p /app/output
 
 EXPOSE 8000
