@@ -1,0 +1,4 @@
+<figure class="figure-card figure-card--{{ figure.layout }}">
+  <div class="figure-media figure-media--{{ figure.fit }}"><img src="{{ figure.uri }}" alt="{{ figure.alt }}"></div>
+  <figcaption><strong>{{ figure.caption }}</strong>{% if figure.source_line %}<small>{{ figure.source_line }}</small>{% endif %}</figcaption>
+</figure>

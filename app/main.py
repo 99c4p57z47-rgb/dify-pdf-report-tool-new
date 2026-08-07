@@ -27,6 +27,7 @@ from app.assets import (
 )
 from app.charts import DEFAULT_PALETTE, ChartDataError, render_chart, validate_chart
 from app.fonts import FontSetupError, register_fonts, verify_font_probe
+from app.html_renderer import HtmlPdfRenderer
 from app.layout import (
     BuildResult,
     ReportTheme,
@@ -37,6 +38,7 @@ from app.knowledge import KnowledgeStore
 from app.markdown import visible_markdown_text
 from app.models import FastReportRequest, ImageSpec, ReportRequest, ReportResponse
 from app.quality import inspect_pdf
+from app.report_view import build_report_view, render_report_html
 from scripts.render_pdf_pages import PdfRenderError, render_pages
 
 
@@ -76,6 +78,10 @@ app = FastAPI(
     title=APP_NAME,
     version="1.0.0",
     description="Render a source-attributed Chinese industry report with images and charts, then return a PDF download URL.",
+)
+app.state.html_renderer = HtmlPdfRenderer(
+    concurrency=int(os.getenv("PDF_RENDER_CONCURRENCY", "2")),
+    timeout_seconds=float(os.getenv("PDF_RENDER_TIMEOUT_SECONDS", "120")),
 )
 app.mount("/files", StaticFiles(directory=str(OUTPUT_DIR)), name="files")
 if ENABLE_ASSET_PREVIEW:
@@ -137,8 +143,17 @@ def _configure_fonts() -> None:
 
 
 @app.on_event("startup")
-async def configure_fonts_on_startup() -> None:
+async def configure_runtime_on_startup() -> None:
     _configure_fonts()
+    try:
+        await app.state.html_renderer.start()
+    except Exception:
+        logger.exception("HTML PDF renderer failed to start")
+
+
+@app.on_event("shutdown")
+async def stop_html_renderer_on_shutdown() -> None:
+    await app.state.html_renderer.stop()
 
 
 @asynccontextmanager
@@ -192,6 +207,24 @@ async def _run_blocking(function, *args):
                 "Blocking report task failed after cancellation task=%s",
                 getattr(function, "__name__", type(function).__name__),
             )
+        raise
+
+
+async def _run_async_safely(function, *args):
+    """Delay cancellation until an in-flight renderer has released its files."""
+    render_task = asyncio.create_task(function(*args))
+    try:
+        return await asyncio.shield(render_task)
+    except asyncio.CancelledError:
+        while not render_task.done():
+            try:
+                await asyncio.shield(render_task)
+            except asyncio.CancelledError:
+                continue
+        try:
+            render_task.result()
+        except Exception:
+            logger.exception("HTML report task failed after request cancellation")
         raise
 
 
@@ -376,6 +409,31 @@ def _build_report_pdf(
     return result
 
 
+async def _build_html_report_pdf(
+    payload: ReportRequest,
+    output_path: Path,
+    image_paths: dict[tuple[int, int], ResolvedImage],
+    chart_paths: dict[tuple[int, int], Path],
+    temp_dir: Path,
+) -> BuildResult:
+    """Build the approved Material-Atelier HTML and print it with Chromium."""
+    view = build_report_view(
+        payload,
+        image_paths,
+        chart_paths,
+        temp_dir,
+    )
+    html = render_report_html(view)
+    render_result = await app.state.html_renderer.render(html, output_path)
+    return BuildResult(
+        page_count=render_result.page_count,
+        image_count=view.image_count,
+        warnings=tuple(view.warnings) + tuple(render_result.warnings),
+        rendered_image_keys=view.rendered_image_keys,
+        rendered_chart_keys=view.rendered_chart_keys,
+    )
+
+
 async def _resolve_images_concurrently(
     payload: ReportRequest,
     client: httpx.AsyncClient,
@@ -485,10 +543,26 @@ def health() -> dict | JSONResponse:
                 "detail": f"Chinese font setup failed: {font_error}",
             },
         )
+    renderer = getattr(app.state, "html_renderer", None)
+    renderer_ready = bool(renderer and renderer.ready)
+    if not renderer_ready:
+        return JSONResponse(
+            status_code=503,
+            content={
+                "status": "error",
+                "service": APP_NAME,
+                "version": "1.2.0",
+                "renderer": "html-playwright",
+                "renderer_ready": False,
+                "detail": getattr(renderer, "error", "HTML renderer has not started"),
+            },
+        )
     return {
         "status": "ok",
         "service": APP_NAME,
-        "version": "1.1.0",
+        "version": "1.2.0",
+        "renderer": "html-playwright",
+        "renderer_ready": True,
         "knowledge_ready": not bool(KNOWLEDGE_STORE_ERROR),
         "knowledge_reports": len(KNOWLEDGE_STORE.reports) if KNOWLEDGE_STORE else 0,
         "knowledge_assets": len(KNOWLEDGE_STORE.assets) if KNOWLEDGE_STORE else 0,
@@ -506,6 +580,12 @@ async def create_report(payload: ReportRequest, request: Request) -> ReportRespo
     font_error = getattr(app.state, "font_error", "font setup has not completed")
     if font_error:
         raise HTTPException(status_code=503, detail=f"Chinese font setup failed: {font_error}")
+    renderer = getattr(app.state, "html_renderer", None)
+    if renderer is None or not renderer.ready:
+        raise HTTPException(
+            status_code=503,
+            detail=f"HTML PDF renderer is not ready: {getattr(renderer, 'error', '')}",
+        )
     _validate_payload(payload)
     report_id = uuid.uuid4().hex[:16]
     requested_name = payload.filename or payload.title
@@ -532,12 +612,13 @@ async def create_report(payload: ReportRequest, request: Request) -> ReportRespo
             temp_dir,
         )
         warnings.extend(chart_warnings)
-        build_result = await _run_blocking(
-            _build_report_pdf,
+        build_result = await _run_async_safely(
+            _build_html_report_pdf,
             payload,
             output_path,
             image_paths,
             chart_paths,
+            temp_dir,
         )
         warnings.extend(build_result.warnings)
 
@@ -590,6 +671,7 @@ async def create_report(payload: ReportRequest, request: Request) -> ReportRespo
     finally:
         shutil.rmtree(temp_dir, ignore_errors=True)
 
+    warnings = list(dict.fromkeys(warnings))
     base_url = PUBLIC_BASE_URL or str(request.base_url).rstrip("/")
     quality_check = "passed_with_warnings" if warnings else "passed"
     encoded_filename = quote(filename, safe="")

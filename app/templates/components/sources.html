@@ -1,0 +1,13 @@
+<section class="section-block sources-section page-break-before">
+  <div class="section-kicker">METHODOLOGY & SOURCES</div>
+  <h1>方法与参考资料</h1>
+  {% if report.methodology_html %}<div class="method-panel prose"><h2>研究方法</h2>{{ report.methodology_html | safe }}</div>{% endif %}
+  {% if report.sources %}
+  <ol class="source-list">
+    {% for source in report.sources %}
+    <li><div><strong>{{ source.title }}</strong><span>{{ source.organization }}｜{{ source.published_at }}{% if source.data_period %}｜数据期：{{ source.data_period }}{% endif %}{% if source.source_type %}｜{{ source.source_type }}{% endif %}</span>{% if source.url %}<a href="{{ source.url }}">来源页面</a>{% endif %}</div></li>
+    {% endfor %}
+  </ol>
+  {% endif %}
+  {% if report.disclaimer_html %}<div class="disclaimer prose">{{ report.disclaimer_html | safe }}</div>{% endif %}
+</section>

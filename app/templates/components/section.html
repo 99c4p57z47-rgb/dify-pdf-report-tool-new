@@ -1,0 +1,17 @@
+<section class="section-block report-section" id="section-{{ section.index }}">
+  <div class="section-kicker">{{ "%02d" | format(section.index) }} / INDUSTRY ANALYSIS</div>
+  <h1>{{ section.heading }}</h1>
+  {% if section.summary %}<p class="section-summary">{{ section.summary }}</p>{% endif %}
+  {% if section.key_points %}
+  <div class="key-point-grid">
+    {% for point in section.key_points %}<div class="key-point"><span>{{ "%02d" | format(loop.index) }}</span><p>{{ point }}</p></div>{% endfor %}
+  </div>
+  {% endif %}
+  <div class="prose">{{ section.body_html | safe }}</div>
+  {% if section.figures %}
+  <div class="figure-grid{% if section.figures|length == 1 %} figure-grid--single{% endif %}">
+    {% for figure in section.figures %}{% include "components/figure.html" %}{% endfor %}
+  </div>
+  {% endif %}
+  {% for chart in section.charts %}{% include "components/chart.html" %}{% endfor %}
+</section>

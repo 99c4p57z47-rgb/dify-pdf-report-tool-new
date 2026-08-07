@@ -1,0 +1,6 @@
+<figure class="chart-card">
+  <div class="chart-heading"><strong>{{ chart.title }}</strong>{% if chart.unit %}<span>单位：{{ chart.unit }}</span>{% endif %}</div>
+  <img src="{{ chart.uri }}" alt="{{ chart.title }}">
+  {% if chart.category_labels or chart.dataset_labels %}<div class="chart-index">{% if chart.category_labels %}<span>分类：{{ chart.category_labels | join('、') }}</span>{% endif %}{% if chart.dataset_labels %}<span>系列：{{ chart.dataset_labels | join('、') }}</span>{% endif %}</div>{% endif %}
+  {% if chart.source or chart.note %}<figcaption>{% if chart.source %}<span>来源：{{ chart.source }}</span>{% endif %}{% if chart.note %}<span>说明：{{ chart.note }}</span>{% endif %}</figcaption>{% endif %}
+</figure>

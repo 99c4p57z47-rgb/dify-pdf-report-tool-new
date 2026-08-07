@@ -1,0 +1,13 @@
+<section class="cover-page{% if not report.cover_uri %} cover-page--fallback{% endif %}">
+  {% if report.cover_uri %}<img class="cover-image" src="{{ report.cover_uri }}" alt="报告封面">{% endif %}
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <div class="cover-kicker">HOME TEXTILE INDUSTRY INSIGHT</div>
+    <h1>{{ report.title }}</h1>
+    {% if report.subtitle %}<p class="cover-subtitle">{{ report.subtitle }}</p>{% endif %}
+    <div class="cover-meta">
+      {% if report.author %}<span>{{ report.author }}</span>{% endif %}
+      <span>{{ report.generated_at }}</span>
+    </div>
+  </div>
+</section>

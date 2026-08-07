@@ -1,0 +1,11 @@
+<section class="toc section-block page-break-after">
+  <div class="section-kicker">CONTENTS</div>
+  <h1>目录</h1>
+  <ol class="toc-list">
+    <li><span class="toc-number">00</span><span>执行摘要</span></li>
+    {% for item in report.sections %}
+      <li><span class="toc-number">{{ "%02d" | format(item.index) }}</span><span>{{ item.heading }}</span></li>
+    {% endfor %}
+    <li><span class="toc-number">{{ "%02d" | format(report.sections|length + 1) }}</span><span>方法与参考资料</span></li>
+  </ol>
+</section>

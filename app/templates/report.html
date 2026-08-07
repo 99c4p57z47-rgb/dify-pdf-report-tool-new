@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ report.title }}</title>
+  <style>{{ report_css | safe }}</style>
+</head>
+<body{% if report.texture_uri %} style="--texture-uri:url('{{ report.texture_uri }}')"{% endif %}>
+  {% include "components/cover.html" %}
+  <main class="report-body">
+    {% include "components/toc.html" %}
+    <section class="executive section-block">
+      <div class="section-kicker">EXECUTIVE SUMMARY</div>
+      <h1>执行摘要</h1>
+      <div class="summary-panel prose">{{ report.executive_summary_html | safe }}</div>
+      {% if report.executive_insights %}
+      <div class="insight-grid">
+        {% for insight in report.executive_insights %}
+        <article class="insight-card">
+          <span>{{ "%02d" | format(insight.index) }}</span>
+          <h2>{{ insight.claim }}</h2>
+          <p><strong>依据</strong>{{ insight.evidence }}</p>
+          <p><strong>启示</strong>{{ insight.implication }}</p>
+        </article>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </section>
+    {% for section in report.sections %}
+      {% include "components/section.html" %}
+    {% endfor %}
+    {% include "components/sources.html" %}
+  </main>
+</body>
+</html>
