@@ -95,6 +95,8 @@ class ReportTheme:
     line: str = "#D8E1E5"
     minimum_readable_column_width: float = 28 * mm
     table_space_after: float = 4 * mm
+    cover_background: Path | None = None
+    interior_background: Path | None = None
 
     def __post_init__(self) -> None:
         if self.body_size < 9.5:
@@ -371,8 +373,8 @@ class KeyPointBox(Table):
             data,
             colWidths=[theme.portrait_content_width],
             repeatRows=1,
-            splitByRow=1,
-            splitInRow=1,
+            splitByRow=0,
+            splitInRow=0,
             hAlign="LEFT",
         )
         self.setStyle(
@@ -526,8 +528,19 @@ class StrategicReportBuilder:
     def _header_footer(self, canvas, document, title: str) -> None:
         canvas.saveState()
         page_number = canvas.getPageNumber()
+        page_width, page_height = canvas._pagesize
+        background = self.theme.cover_background if page_number == 1 else self.theme.interior_background
+        if background and background.is_file():
+            canvas.drawImage(
+                str(background),
+                0,
+                0,
+                width=page_width,
+                height=page_height,
+                preserveAspectRatio=False,
+                mask="auto",
+            )
         if page_number > 1:
-            page_width, page_height = canvas._pagesize
             canvas.setStrokeColor(self.theme.color(self.theme.line))
             canvas.setLineWidth(0.5)
             canvas.line(

@@ -33,8 +33,9 @@ from app.layout import (
     StrategicReportBuilder,
     chart_accessible_labels,
 )
+from app.knowledge import KnowledgeStore
 from app.markdown import visible_markdown_text
-from app.models import ImageSpec, ReportRequest, ReportResponse
+from app.models import FastReportRequest, ImageSpec, ReportRequest, ReportResponse
 from app.quality import inspect_pdf
 from scripts.render_pdf_pages import PdfRenderError, render_pages
 
@@ -49,6 +50,8 @@ MAX_REPORT_SECTIONS = int(os.getenv("MAX_REPORT_SECTIONS", "20"))
 MAX_REPORT_IMAGES = int(os.getenv("MAX_REPORT_IMAGES", "30"))
 ASSET_DIR = Path(os.getenv("PDF_ASSET_DIR", "./assets")).resolve()
 ASSET_MANIFEST = ASSET_DIR / "manifest.json"
+KNOWLEDGE_DIR = Path(os.getenv("PDF_KNOWLEDGE_DIR", "./knowledge")).resolve()
+KNOWLEDGE_CATALOG = KNOWLEDGE_DIR / "catalog.json"
 ENABLE_ASSET_PREVIEW = os.getenv("ENABLE_ASSET_PREVIEW", "").strip().lower() == "true"
 _VALIDATOR_FIELD_PATH = re.compile(
     r"\b((?:sections|executive_insights)(?:\.(?:[A-Za-z_][A-Za-z0-9_]*|\d+))+)[：:]"
@@ -62,6 +65,12 @@ try:
 except AssetManifestError as exc:
     ASSET_REGISTRY = AssetRegistry.empty(ASSET_DIR)
     ASSET_REGISTRY_ERROR = str(exc)
+try:
+    KNOWLEDGE_STORE = KnowledgeStore.from_catalog(KNOWLEDGE_CATALOG, ASSET_DIR)
+    KNOWLEDGE_STORE_ERROR = ""
+except Exception as exc:
+    KNOWLEDGE_STORE = None
+    KNOWLEDGE_STORE_ERROR = str(exc)
 
 app = FastAPI(
     title=APP_NAME,
@@ -355,6 +364,8 @@ def _build_report_pdf(
     theme = ReportTheme(
         regular_font=font_registry.regular_name,
         bold_font=font_registry.bold_name,
+        cover_background=ASSET_DIR / "backgrounds" / "home_textile_cover_v1.png",
+        interior_background=ASSET_DIR / "backgrounds" / "home_textile_interior_v1.png",
     )
     result = StrategicReportBuilder(font_registry, theme).build(
         payload,
@@ -451,7 +462,7 @@ def _validate_payload(payload: ReportRequest) -> None:
                 ) from exc
 
 
-@app.get("/health", response_model=None)
+@app.get("/health")
 def health() -> dict | JSONResponse:
     if ASSET_REGISTRY_ERROR:
         return JSONResponse(
@@ -474,7 +485,14 @@ def health() -> dict | JSONResponse:
                 "detail": f"Chinese font setup failed: {font_error}",
             },
         )
-    return {"status": "ok", "service": APP_NAME, "version": "1.0.0"}
+    return {
+        "status": "ok",
+        "service": APP_NAME,
+        "version": "1.1.0",
+        "knowledge_ready": not bool(KNOWLEDGE_STORE_ERROR),
+        "knowledge_reports": len(KNOWLEDGE_STORE.reports) if KNOWLEDGE_STORE else 0,
+        "knowledge_assets": len(KNOWLEDGE_STORE.assets) if KNOWLEDGE_STORE else 0,
+    }
 
 
 @app.post(
@@ -584,3 +602,16 @@ async def create_report(payload: ReportRequest, request: Request) -> ReportRespo
         warnings=warnings,
         quality_check=quality_check,
     )
+
+
+@app.post(
+    "/v1/reports/fast",
+    dependencies=[Depends(require_auth)],
+    response_model=ReportResponse,
+)
+async def create_fast_report(payload: FastReportRequest, request: Request) -> ReportResponse:
+    """Enrich a compact request from the bundled knowledge base, then render once."""
+    if KNOWLEDGE_STORE is None:
+        raise HTTPException(status_code=503, detail=f"Knowledge store failed: {KNOWLEDGE_STORE_ERROR}")
+    enriched = KNOWLEDGE_STORE.enrich(payload)
+    return await create_report(enriched, request)

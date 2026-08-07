@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from typing import Any, Literal
 
-from pydantic import AliasChoices, BaseModel, Field, HttpUrl, field_validator, model_validator
+from pydantic import BaseModel, Field, HttpUrl, field_validator, model_validator
 
 
 _PLACEHOLDER_TOKENS = ("XXXX", "TBD")
@@ -125,17 +125,39 @@ class ExecutiveInsightSpec(BaseModel):
 
 
 class SectionSpec(BaseModel):
-    heading: str = Field(
-        min_length=1,
-        max_length=220,
-        validation_alias=AliasChoices("heading", "title"),
-    )
+    heading: str = Field(min_length=1, max_length=220)
     summary: str = Field(default="", max_length=1500)
     body_markdown: str = Field(default="", max_length=30000)
     key_points: list[str] = Field(default_factory=list, max_length=20)
     images: list[ImageSpec] = Field(default_factory=list, max_length=8)
     charts: list[ChartSpec] = Field(default_factory=list, max_length=6)
     source_ids: list[str] = Field(default_factory=list, max_length=100)
+
+
+class FastSectionSpec(BaseModel):
+    heading: str = Field(min_length=1, max_length=220)
+    summary: str = Field(default="", max_length=1500)
+    body_markdown: str = Field(default="", max_length=12000)
+    key_points: list[str] = Field(default_factory=list, max_length=12)
+    source_ids: list[str] = Field(default_factory=list, max_length=20)
+
+
+class FastReportRequest(BaseModel):
+    title: str = Field(min_length=1, max_length=240)
+    subtitle: str = Field(default="", max_length=300)
+    author: str = Field(default="家纺行业报告分析智能体", max_length=160)
+    generated_at: str = Field(default="", max_length=80)
+    year: int | None = Field(default=None, ge=2000, le=2100)
+    executive_summary: str = Field(default="", max_length=4000)
+    sections: list[FastSectionSpec] = Field(min_length=1, max_length=12)
+    methodology: str = Field(default="", max_length=3000)
+    disclaimer: str = Field(
+        default="本报告基于服务器知识库和已注明资料生成，仅供行业研究与产品规划参考。",
+        max_length=2000,
+    )
+    filename: str = Field(default="", max_length=160)
+    include_images: bool = True
+    max_images_per_section: int = Field(default=1, ge=0, le=2)
 
 
 class ReportRequest(BaseModel):
