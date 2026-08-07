@@ -19,7 +19,8 @@ ENV CJK_FONT_DIR=/app/fonts
 WORKDIR /app
 
 COPY requirements.txt ./requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt \
+    && python -c "import playwright, jinja2"
 
 COPY app ./app
 COPY scripts ./scripts
