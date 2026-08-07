@@ -462,7 +462,7 @@ def _validate_payload(payload: ReportRequest) -> None:
                 ) from exc
 
 
-@app.get("/health")
+@app.get("/health", response_model=None)
 def health() -> dict | JSONResponse:
     if ASSET_REGISTRY_ERROR:
         return JSONResponse(
