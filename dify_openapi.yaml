@@ -4,9 +4,37 @@ info:
   version: 1.0.0
   description: 将经过核验的行业研究内容、知识库资产、数据图表和来源信息排版为 PDF，并返回通过质量检查的下载链接。
 servers:
-  - url: https://YOUR-PDF-TOOL-WORKER.workers.dev
+  - url: https://little-term-e063.99c4p57z47.workers.dev
     description: 导入 Dify 前，操作员必须将此占位地址替换为部署的完整 Cloudflare Worker URL。
 paths:
+  /v1/reports/fast:
+    post:
+      operationId: create_industry_pdf_fast
+      summary: 快速创建家纺行业研究PDF
+      description: Agent只提交标题、简要章节正文和关键点；服务器自动从内置knowledge目录补全来源、匹配图片并生成PDF。正常只调用一次。
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FastReportRequest'
+      responses:
+        '200':
+          description: PDF已生成并返回真实下载链接。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResponse'
+        '401':
+          description: Bearer Token缺失或无效。
+        '422':
+          description: 输入字段错误。
+        '500':
+          description: PDF生成或质量检查失败。
+        '503':
+          description: 知识库、字体或图片资产未就绪。
   /v1/reports:
     post:
       operationId: create_industry_pdf
@@ -34,7 +62,7 @@ paths:
                     success: true
                     report_id: 7a0f3ed5c1b24f60
                     filename: 7a0f3ed5c1b24f60_2026家纺趋势简报.pdf
-                    download_url: https://YOUR-PDF-TOOL-WORKER.workers.dev/files/7a0f3ed5c1b24f60_2026%E5%AE%B6%E7%BA%BA%E8%B6%8B%E5%8A%BF%E7%AE%80%E6%8A%A5.pdf
+                    download_url: https://little-term-e063.99c4p57z47.workers.dev/files/7a0f3ed5c1b24f60_2026%E5%AE%B6%E7%BA%BA%E8%B6%8B%E5%8A%BF%E7%AE%80%E6%8A%A5.pdf
                     page_count: 8
                     image_count: 1
                     warnings:
@@ -105,6 +133,78 @@ components:
       scheme: bearer
       bearerFormat: API token
   schemas:
+    FastReportRequest:
+      type: object
+      required: [title, sections]
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 240
+        subtitle:
+          type: string
+          maxLength: 300
+        author:
+          type: string
+          maxLength: 160
+          default: 家纺行业报告分析智能体
+        generated_at:
+          type: string
+          maxLength: 80
+        year:
+          type: [integer, 'null']
+          minimum: 2000
+          maximum: 2100
+        executive_summary:
+          type: string
+          maxLength: 4000
+        sections:
+          type: array
+          minItems: 1
+          maxItems: 12
+          items:
+            $ref: '#/components/schemas/FastSection'
+        methodology:
+          type: string
+          maxLength: 3000
+        disclaimer:
+          type: string
+          maxLength: 2000
+        filename:
+          type: string
+          maxLength: 160
+        include_images:
+          type: boolean
+          default: true
+        max_images_per_section:
+          type: integer
+          minimum: 0
+          maximum: 2
+          default: 1
+    FastSection:
+      type: object
+      required: [heading]
+      properties:
+        heading:
+          type: string
+          minLength: 1
+          maxLength: 220
+        summary:
+          type: string
+          maxLength: 1500
+        body_markdown:
+          type: string
+          maxLength: 12000
+        key_points:
+          type: array
+          maxItems: 12
+          items:
+            type: string
+        source_ids:
+          type: array
+          maxItems: 20
+          items:
+            type: string
     ReportRequest:
       type: object
       required: [title, sections]
@@ -185,8 +285,6 @@ components:
           type: string
           minLength: 1
           maxLength: 220
-          description: 章节标题。标准字段名为 heading；服务端仅为兼容旧调用而接受 title 别名，Agent 应始终提交 heading。
-          example: 市场现状与核心数据
         summary:
           type: string
           maxLength: 1500
